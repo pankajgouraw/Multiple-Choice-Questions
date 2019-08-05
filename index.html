@@ -1,45 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>MCQ</title>
+	<title>ClassTeacher</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script type="text/javascript" src="js/jquery.js"></script>
 </head>
 <body>
+<!-- <body oncontextmenu="return false" onkeydown="return false;" onmousedown="return false;"> -->
 	<div class="container">
-		<div id="question"><h4>Mindshaper is located at:-</h4></div>
+		 <div id="header">
+		   <div class="logo"><img src="img/logo.png"> <h3></h3></div>	
+        </div>
+        <div class="mcqWrapper">
+		<div id="question"></div>
 		<div id="ansContainer">
-<!-- 			<div class="ans">
-				<input type="radio" value="" name="data">
-				<p>Gujrat</p>
-			</div>
-			<div class="ans">
-				<input type="radio" value="" name="data">
-				<img src="img/right.png">
-			</div>
-			<div class="ans">
-				<input type="radio" value="" name="data">
-				<p>Haryana</p>
-			</div>
-			<div class="ans">
-				<input type="radio" value="gurgaon" name="data">
-				<p>gurgaon</p>
-			</div> -->
 		</div>
 		<div class="options">
-			<div class="right"><h4>Right</h4></div>
+			<div class="right">
+				<img src="img/happy.png">
+				<h4>Well Done...</h4></div>
 			<div class="wrong">
-			   <h4>Wrong</h4>
+				<img class="sad" src="img/sad.png">
+			   <h4></h4>
 			   <button id="tryAgain">Try Again</button>
 			</div>
 			<div class="viewAns">
-				<h4>Wrong</h4>
+				<img class="sad" src="img/sad.png">
+				<h4></h4>
 			    <button id="viewAns">Show Answer</button>
+			</div>
+			<div class="navButton">
+				<img src="img/next.png" id="prev" class="navigation">
+				<img src="img/prev.png" id="next" class="navigation">
 			</div>
 		</div>
 	</div>
+	</div>
 <script type="text/javascript" src="data/data.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
+
 </body>
 </html>

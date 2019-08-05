@@ -1,142 +1,122 @@
 $(function(){
+     $('.logo h3').append(header);
+
+     // to show the try again and show answer button
      let showOptions =0;
+
      const question = $('#question');
      const ansContainer = $('#ansContainer')
-
-     // show the first mcq
-     let checkQuestion = data[0].question.split(".").pop(); 
-     // console.log(checkQuestion);
-
+     
+     // question container
      var showQuest = '';
 
-     // check question type
-     if(checkQuestion == 'mp4'){
-    		showQuest = "<video controls src="+data[0].question+"/>";
-        }else if(checkQuestion == 'png'){
-        	showQuest = "<img src="+data[0].question+"/>";
-        }else{
-        	showQuest = "<h3>"+data[0].question+"</h3>";
-        }
-    question.html(showQuest);
+     // option container
+     let options='';
+
+     // navigation index
+     let index = 0;
+ 
 
 
-    // check answertype
-    let corrAns='';
-    let sugg1='';
-    let sugg2='';
-    let sugg3='';
-
-    checkCorrAns = data[0].corrAns.split(".").pop();
-    checkSugg1 = data[0].sugg1.split(".").pop();
-    checkSugg2 = data[0].sugg2.split(".").pop();
-    checkSugg3 = data[0].sugg3.split(".").pop();
-
-    // check correct ans
-         if(checkCorrAns == 'mp4'){
-    		corrAns = `<div class='ans corrAns'>
-							<input type='radio' id='corrAns' value='${data[0].corrAns}' name='data'>
-							label for="corrAns" ><video controls src="${data[0].corrAns}"/></label>
+function fetchData(){
+     showQuest = "<h3>"+data[index].question+"</h3>";
+     question.html(showQuest);
+        	options =`<div class='ans corrAns'>
+        	                <label class="labelContainer">
+							    <input type='radio' id='corrAns' value='${data[index].corrAns}' name='data'>
+								<span class="checkmark"></span>
+							</label>
+							<label for="corrAns" ><p>${data[index].corrAns}</p></label>
+			             </div>
+                         <div class='ans suggOne'>
+        					 <label class="labelContainer">
+							    <input type='radio' id="optOne" value='${data[index].sugg1}' name='data'>
+								<span class="checkmark"></span>
+							</label>
+							<label for="optOne" ><p>${data[index].sugg1}</p></label>
+			             </div>
+                         <div class='ans suggTwo'>
+        	 				<label class="labelContainer">	
+								<input type='radio' id="opt2" value='${data[index].sugg2}' name='data'>
+								<span class="checkmark"></span>
+							</label>
+							<label for="opt2"><p>${data[index].sugg2}</p></label>
+			             </div>
+                         <div class='ans suggThird'>
+        				   <label class="labelContainer">	
+							   <input type='radio' id='opt3' value='${data[index].sugg3}' name='data'>
+							   <span class="checkmark"></span>
+							</label>
+							<label for='opt3'><p>${data[index].sugg3}</p></label>
 			             </div>`;
-        }else if(checkCorrAns == 'png'){
-        	corrAns = `<div class='ans corrAns'>
-							<input type='radio' id='corrAns' value='${data[0].corrAns}' name='data'>
-							<label for="corrAns" ><img src="${data[0].corrAns}"/></label>
-			             </div>`;
-        }else{
-        	corrAns =`<div class='ans corrAns'>
-							<input type='radio' id='corrAns' value='${data[0].corrAns}' name='data'>
-							<label for="corrAns" ><p>${data[0].corrAns}</p></label>
-			             </div>`;
-        }
 
-       ansContainer.append(corrAns);
-
-       // suggestion one
-
-        if(checkSugg1 == 'mp4'){
-    		sugg1 = `<div class='ans suggOne'>
-							<input type='radio' id="optOne" value='${data[0].sugg1}' name='data'>
-							<label for="optOne" ><video controls src="${data[0].sugg1}"/></label>
-			             </div>`;
-        }else if(checkSugg1 == 'png suggOne'){
-        	sugg1 = `<div class='ans'>
-							<input type='radio' id="optOne" value='${data[0].sugg1}' name='data'>
-							<label for="optOne" ><img src="${data[0].sugg1}"/></label>
-			             </div>`;
-        }else{
-        	sugg1 =`<div class='ans suggOne'>
-							<input type='radio' id="optOne" value='${data[0].sugg1}' name='data'>
-							<label for="optOne" ><p>${data[0].sugg1}</p></label>
-			             </div>`;
-        }
-
-       ansContainer.append(sugg1);
-
-        // suggestion two
-
-        if(checkSugg2 == 'mp4'){
-    		sugg2 = `<div class='ans suggTwo'>
-							<input type='radio' id="opt2" value='${data[0].sugg2}' name='data'>
-							<label for="opt2"><video controls src="${data[0].sugg2}"/></label>
-			             </div>`;
-        }else if(checkSugg2 == 'png'){
-        	sugg2 = `<div class='ans suggTwo'>
-							<input type='radio' id="opt2" value='${data[0].sugg2}' name='data'>
-							<label for="opt2"><img src="${data[0].sugg2}"/></label>
-			             </div>`;
-        }else{
-        	sugg2 =`<div class='ans suggTwo'>
-							<input type='radio' id="opt2" value='${data[0].sugg2}' name='data'>
-							<label for="opt2"><p>${data[0].sugg2}</p></label>
-			             </div>`;
-        }
-
-       ansContainer.append(sugg2);
-
-
-       // suggestion three
-
-        if(checkSugg3 == 'mp4'){
-    		sugg3 = `<div class='ans suggThird'>
-							<input type='radio' id='opt3' value='${data[0].sugg3}' name='data'>
-							<label for='opt3'><video controls src="${data[0].sugg3}"/></label>
-			             </div>`;
-        }else if(checkSugg3 == 'png'){
-        	sugg3 = `<div class='ans suggThird'>
-							<input type='radio' id='opt3' value='${data[0].sugg3}' name='data'>
-							<label for='opt3'><img src="${data[0].sugg3}"/></label>
-			             </div>`;
-        }else{
-        	sugg3 =`<div class='ans suggThird'>
-							<input type='radio' id='opt3' value='${data[0].sugg3}' name='data'>
-							<label for='opt3'><p>${data[0].sugg3}</p></label>
-			             </div>`;
-        }
-
-       ansContainer.append(sugg3);
+       ansContainer.html(options);
 
     
        $('#ansContainer .corrAns').css({'order':Math.floor((Math.random() * 4) + 1)});
        $('#ansContainer .suggThird').css({'order':Math.floor((Math.random() * 4) + 1)});
        $('#ansContainer .suggTwo').css({'order':Math.floor((Math.random() * 4) + 1)});
        $('#ansContainer .suggOne').css({'order':Math.floor((Math.random() * 4) + 1)});
+}  //data function end here
+
+fetchData();
+
+// code for navigation
+
+$('.navigation').click(function(){
+    let navid = $(this).attr('id');
+    if(navid == 'prev'){
+        index--;
+         if(index = 0){
+            return false;
+         }
+        console.log("prev index :" +index);
+
+    }
+
+    if(index >= data.length-1){
+        console.log("you are at last position...");
+        return false;
+    }
 
 
-   
-     $('#ansContainer .ans input').click(function(){
+    if(navid== 'next'){
+       index++;
+        console.log("next index :" +index);
+    }
+
+
+
+    $('.navButton').hide();
+    $('.right').hide();
+
+    // function to call data
+    fetchData();
+
+});
+
+
+$('#ansContainer').on("click",'.ans input',function(){
      	$('#ansContainer .ans input').attr("disabled","disabled");
      	$(this).removeAttr("disabled");
+     	$(this).next('label').css({'color':'#000'});
 
          let id =  $(this).attr('id');
          if(id=='corrAns'){
          	$('.right').fadeIn();
          	$('.wrong').fadeOut();
+            $('.navButton').show();
+             showOptions = 0;
          }else{
          	if(showOptions==1){
          		$('.viewAns').fadeIn();
+                console.log(showOptions)
+
          	}else{
          		$('.right').fadeOut();
          	    $('.wrong').fadeIn();
+                console.log(showOptions)
+
          	}
 
          }
@@ -150,13 +130,19 @@ $(function(){
      	showOptions = 1;
      	$('.options div').fadeOut();
      	$('#ansContainer .ans input').removeAttr("disabled").prop('checked', false);
+     	$('.ans label').css({'color':'#3e3e3e'});
      })
 
      //show the answers
      $('#viewAns').click(function(){
+        showOptions = 0;
+     	$('.ans label').css({'color':'#3e3e3e'});
      	$('#ansContainer .ans input').attr("disabled","disabled");
      	$('#corrAns').prop('checked', true).removeAttr("disabled");
-     	$('.viewAns').fadeOut();
+     	$('#corrAns').next().css({'color':'#000'});
+     	$('.viewAns').hide();
+        $('.navButton').show();
+
      })
 
 });
