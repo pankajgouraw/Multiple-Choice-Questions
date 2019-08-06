@@ -1,7 +1,6 @@
-// All letter should be small
-// video should be mp4
-//image should be .png 
 
+const bgColor = '#527549';
+const borderColor = '10px solid rgb(28, 151, 85)';
 const header = 'MCQ';
 const data = [
 	{

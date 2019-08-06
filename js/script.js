@@ -3,7 +3,8 @@ $(function(){
 
      // to show the try again and show answer button
      let showOptions =0;
-
+     $('body').css({'background':bgColor});
+     $('.mcqWrapper').css({'border':borderColor});
      const question = $('#question');
      const ansContainer = $('#ansContainer')
      
@@ -19,30 +20,30 @@ $(function(){
 
 
 function fetchData(){
-     showQuest = "<h3>"+data[index].question+"</h3>";
+     showQuest = "<h3 class='animated zoomIn'>"+data[index].question+"</h3>";
      question.html(showQuest);
-        	options =`<div class='ans corrAns'>
+        	options =`<div class='ans corrAns animated fadeInUp' >
         	                <label class="labelContainer">
 							    <input type='radio' id='corrAns' value='${data[index].corrAns}' name='data'>
 								<span class="checkmark"></span>
 							</label>
 							<label for="corrAns" ><p>${data[index].corrAns}</p></label>
 			             </div>
-                         <div class='ans suggOne'>
+                         <div class='ans suggOne animated fadeInUp'>
         					 <label class="labelContainer">
 							    <input type='radio' id="optOne" value='${data[index].sugg1}' name='data'>
 								<span class="checkmark"></span>
 							</label>
 							<label for="optOne" ><p>${data[index].sugg1}</p></label>
 			             </div>
-                         <div class='ans suggTwo'>
+                         <div class='ans suggTwo animated fadeInUp'>
         	 				<label class="labelContainer">	
 								<input type='radio' id="opt2" value='${data[index].sugg2}' name='data'>
 								<span class="checkmark"></span>
 							</label>
 							<label for="opt2"><p>${data[index].sugg2}</p></label>
 			             </div>
-                         <div class='ans suggThird'>
+                         <div class='ans suggThird animated fadeInUp'>
         				   <label class="labelContainer">	
 							   <input type='radio' id='opt3' value='${data[index].sugg3}' name='data'>
 							   <span class="checkmark"></span>
@@ -67,23 +68,39 @@ $('.navigation').click(function(){
     let navid = $(this).attr('id');
     if(navid == 'prev'){
         index--;
-         if(index = 0){
+         if(index < 0){
+            index = 0;
             return false;
          }
         console.log("prev index :" +index);
 
     }
 
-    if(index >= data.length-1){
+    if(index == 0){
+       $('#prev').hide(); 
+    }
+
+
+
+
+
+    if(index == data.length-1){
         console.log("you are at last position...");
         return false;
     }
 
-
     if(navid== 'next'){
        index++;
+        $('#prev').show();
         console.log("next index :" +index);
     }
+
+    if(index == data.length-1){
+       $('#next').hide(); 
+    }else{
+       $('#next').show();  
+    }
+
 
 
 
@@ -110,12 +127,12 @@ $('#ansContainer').on("click",'.ans input',function(){
          }else{
          	if(showOptions==1){
          		$('.viewAns').fadeIn();
-                console.log(showOptions)
+                // console.log(showOptions)
 
          	}else{
          		$('.right').fadeOut();
          	    $('.wrong').fadeIn();
-                console.log(showOptions)
+                // console.log(showOptions)
 
          	}
 

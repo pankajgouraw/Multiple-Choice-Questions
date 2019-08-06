@@ -5,7 +5,7 @@
 }
 body{
     height: 100vh;
-    background: radial-gradient(#673AB7, #00968859);
+    /*background: radial-gradient(#673AB7, #00968859);*/
 }
 #question{}
 
@@ -70,7 +70,8 @@ font-family: cursive;
     align-items: center;
 }
 #header{
-    margin-bottom:20px;
+    margin-bottom:25px;
+    margin-top: 15px;
 }
 .container{
     max-width:768px;
@@ -85,14 +86,15 @@ background: #fff;
 padding: 15px;
     padding-bottom: 15px;
 padding-bottom: 30px;
-border: 10px solid #ff5996;
+/*border: 10px solid #ff5996;*/
+box-shadow: 0px 0px 15px #000;
 }
 
 #question{
 	text-align: center;
 font-size: 30px;
-margin-top:15px;
-margin-bottom: 15px;
+margin-top:10px;
+margin-bottom: 10px;
 }
 
 #ansContainer .ans input{
@@ -130,6 +132,8 @@ margin-bottom: 15px;
 .navButton{
   display: none;
 }
+
+#prev{display: none;}
 
 /*styleing the radio button*/
 
