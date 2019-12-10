@@ -17,10 +17,10 @@ body {
   width: 50%;
 }
 .right {
-  color: green;
+  color: #000;
 }
 .wrong {
-  color: red;
+  color: #000;
 }
 #tryAgain {
   padding: 10px 31px;
@@ -35,8 +35,16 @@ body {
   margin: 0px;
   font-size: 31px;
   margin-bottom: 10px;
-  font-family: cursive;
+  font-family: sans-serif;
 }
+
+.logo h3 span{
+    background-color: #a2a2f6;
+    padding: 10px;
+    border-radius: 6px;
+    margin-left: 90px;
+}
+
 .options {
   text-align: center;
   float: left;
@@ -57,18 +65,57 @@ body {
   border: none;
   border-radius: 6px;
 }
-#header .logo h3 {
-  flex-grow: 1;
-  text-align: center;
-  font-family: cursive;
-  font-size: 28px;
-  color: #fff;
+
+#checkScore{
+font-size: 20px;
+    font-family: sans-serif;
+    color: #026b9f;
+    font-weight: bold;
+    cursor: pointer;    margin: 20px 0px;
+    display: none;
 }
+.displayScore #PlayAgain{
+  background: #a2a2f6;
+    border: none;
+    border-radius: 5px;
+    padding: 9px 15px;
+    font-weight: bold;
+    font-size: 20px;
+    cursor:pointer;
+        margin-top: 10px;
+}
+/*
+        #CorrAns{}
+        #incorrectAns{}
+        #noOfQuest{}*/
+.displayScore p span{color:red;}
+.displayScore p{
+      font-size: 20px;
+    font-family: sans-serif;
+    margin-bottom: 10px;
+    font-weight: bold;
+   
+}
+
+.displayScore{
+  display: none;
+  text-align: center; padding-top:20px;
+}
+#header .logo h3 {
+    flex-grow: 1;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 28px;
+    color: #fff;
+    font-family: sans-serif;
+}
+
 #header .logo {
   margin: 0px auto;
   display: flex;
   align-items: center;
 }
+
 #header {
   margin-bottom: 25px;
   margin-top: 15px;
@@ -89,10 +136,12 @@ body {
   overflow: auto;
 }
 #question {
-  text-align: center;
-  font-size: 30px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+    text-align: left;
+    font-size: 17px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: sans-serif;
+    margin-left: 10px;
 }
 #ansContainer .ans input {
   margin-right: 15px;
@@ -195,4 +244,15 @@ body {
   height: 10px;
   border-radius: 50%;
   background: white;
+}
+
+
+
+@media screen and (max-width: 500px) {
+  #header .logo h3{
+    font-size: 20px;
+  }
+  #question{
+    font-size: 15px;
+  }
 }

@@ -1,5 +1,10 @@
 $(function () {
-    $('.logo h3').append(header);
+    $('.logo h3 span').append(header);
+    $('.logo h3 span').css({'color':headerColor});
+
+    let audioTryAgain = new Audio('audio/tryAgain.mp3');
+    let audioWellDone = new Audio('audio/wellDone.mp3');
+    
     // to show the try again and show answer button
     let showOptions = 0;
     $('body').css({
@@ -16,9 +21,10 @@ $(function () {
     let options = '';
     // navigation index
     let index = 0;
+    let rightAns = 0;
 
     function fetchData() {
-        showQuest = "<h3 class='animated zoomIn'>" + data[index].question + "</h3>";
+        showQuest = "<h3 class='animated zoomIn'>"+ (index+1) +'. '+ data[index].question + "</h3>";
         question.html(showQuest);
         options = `<div class='ans corrAns animated fadeInUp' >
                             <label class="labelContainer">
@@ -75,21 +81,24 @@ $(function () {
             console.log("prev index :" + index);
         }
         if (index == 0) {
-            $('#prev').hide();
+            // $('#prev').hide();
         }
-        if (index == data.length - 1) {
-            console.log("you are at last position...");
-            return false;
-        }
+        // if (index == data.length - 1) {
+        //     console.log("you are at last position...");
+        //     return false;
+        // }
         if (navid == 'next') {
             index++;
-            $('#prev').show();
+            // $('#prev').show();
             console.log("next index :" + index);
         }
         if (index == data.length - 1) {
             $('#next').hide();
+             console.log('you are at last posiiton')
+             $('#checkScore').show();
         } else {
             $('#next').show();
+
         }
         $('.navButton').hide();
         $('.right').hide();
@@ -98,26 +107,30 @@ $(function () {
     });
     $('#ansContainer').on("click", '.ans input', function () {
         $('#ansContainer .ans input').attr("disabled", "disabled");
-        $(this).removeAttr("disabled");
+        // $(this).removeAttr("disabled");
         $(this).next('label').css({
             'color': '#000'
         });
         let id = $(this).attr('id');
         if (id == 'corrAns') {
+            audioWellDone.play();
             $('.right').fadeIn();
             $('.wrong').fadeOut();
             $('.navButton').show();
             showOptions = 0;
+            rightAns++;
         } else {
             if (showOptions == 1) {
                 $('.viewAns').fadeIn();
                 // console.log(showOptions)
             } else {
+                audioTryAgain.play();
                 $('.right').fadeOut();
                 $('.wrong').fadeIn();
                 // console.log(showOptions)
             }
         }
+        console.log(rightAns);
     });
     // try agian or reset puzzale
     $('#tryAgain').click(function () {
@@ -141,5 +154,21 @@ $(function () {
         });
         $('.viewAns').hide();
         $('.navButton').show();
+    })
+
+    let dataLength = data.length;
+    console.log(dataLength);
+    $('#checkScore').click(function(){
+        $('#CorrAns').text(rightAns);
+        $('#incorrectAns').text(dataLength-rightAns);
+        $('#noOfQuest').text(dataLength);
+        $('.displayScore').show();
+        $('.options').hide();
+       $('#ansContainer').hide();
+       $('#question').hide();
+    })
+
+    $('#PlayAgain').click(function(){
+        location.reload();
     })
 });
